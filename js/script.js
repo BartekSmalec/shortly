@@ -1,7 +1,16 @@
 const input = document.getElementById('link-input');
 const linkForm = document.getElementById('link-from');
 const errMsg = document.getElementById('err-msg');
+const btn = document.getElementById('menu-btn');
+const menu = document.getElementById('menu');
 
+btn.addEventListener('click', navToggle);
+linkForm.addEventListener('submit', formSubmit);
+function navToggle() {
+    btn.classList.toggle('open');
+    menu.classList.toggle('flex');
+    menu.classList.toggle('hidden');
+}
 function validURL(str) {
     var pattern = new RegExp(
         '^(https?:\\/\\/)?' + // protocol
@@ -13,8 +22,8 @@ function validURL(str) {
         'i'
     )
     return !!pattern.test(str)
-}
 
+}
 function formSubmit(e) {
     e.preventDefault();
     if (input.value === '') {
@@ -27,6 +36,5 @@ function formSubmit(e) {
         errMsg.innerHTML = '';
         input.classList.remove('border-red');
     }
-}
 
-linkForm.addEventListener('submit', formSubmit);
+}
